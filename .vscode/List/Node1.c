@@ -28,7 +28,6 @@ void creatList(Node *head)
         }
         newhead = (Node *)malloc(sizeof(Node));
         newhead->val = val;
-        newhead->next = NULL;
         newhead->next = head->next;
         head->next = newhead;
     }
@@ -98,7 +97,7 @@ int main()
     creatList(head);
     printList(head);
     Node *upk = NULL;
-    upk = findList(head); //返回的是你要查询的前一个链表
+    upk = findList(head); //返回的是你要查询的前一个结点
     deleteList(upk);
     increase(upk);
     correct(upk);

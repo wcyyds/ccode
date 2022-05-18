@@ -1,5 +1,7 @@
 //选择排序，冒泡排序
 #include <stdio.h>
+void choose();
+void bubble();
 int main ()
 {
     int arr[]={1,8,9,2,4,5,2,4,1,456};
@@ -8,7 +10,7 @@ int main ()
     bubble(arr);
     for(i = 0; i < 10; i++)
     {
-        printf("%d",arr[i]);
+        printf("%d\n",arr[i]);
     }
 }
 
@@ -35,7 +37,7 @@ void bubble (int *arr)//冒泡排序法
     int i, j, t;
     for(i = 0; i < 10; i++)
     {
-        for(j = 0; j < 10-1-i; j++)
+        for(j = 0; j < 10; j++)
         {
             if(arr[j] > arr[j+1])
             {

@@ -31,4 +31,5 @@ int main()
     if (nums[i] == nums[j]) {
         printf("true");
     }
+    printf("okok");
 }
