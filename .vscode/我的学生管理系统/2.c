@@ -59,6 +59,9 @@ void adminUItwo(student *head, student *p, teacher *head1);                     
 void chongzhumima(student *head, student *q);                                              //重置学生密码函数
 student *findclass(student *head, student *p, teacher *head1, teacher *b, char *teaclass); //确认查找班级函数
 
+student *sorlist5(student *head);
+
+
 void creatfile() //检查创建文件
 {
     FILE *fp;
@@ -594,6 +597,7 @@ student *sortlist(student *head) // 6.排序所有学生的数学成绩
     student *dummpy = (student *)malloc(sizeof(student));
     dummpy->next = NULL;
     dummpy->mathgrade = 0;
+    head->mathgrade = 0;
     student *work = dummpy;
     while (head)
     {
@@ -614,6 +618,28 @@ student *sortlist(student *head) // 6.排序所有学生的数学成绩
     }
     p->next = NULL;
     return dummpy;
+}
+
+student *sorlist5(student *head)
+{
+    student *p = head->next;
+    student *pre;
+    student *r = p->next;
+    p->next = NULL;
+    p = r;
+    while(p)
+    {
+        r = p->next;
+        pre = head;
+        while(pre->next && pre->next->mathgrade < p->mathgrade)
+        {
+            pre = pre->next;
+        }
+        p->next = pre->next;
+        pre->next = p;
+        p = r;
+    }
+    return head;
 }
 
 void updatefile(student *head) //更新文件函数！
@@ -914,29 +940,26 @@ student *sortclass(student *head, char *class) // 6.教师排序本班学生的�
         }
     }
 
-    student *dummpy = (student *)malloc(sizeof(student));
-    dummpy->next = NULL;
-    dummpy->mathgrade = 0;
-    student *work = dummpy;
-    while (e)
-    {
-        student *temp = e->next;
-        work = dummpy;
-        while (work->next && work->next->mathgrade < e->mathgrade)
-        {
-            work = work->next;
-        }
-        e->next = work->next;
-        work->next = e;
-        e = temp;
-    }
-    student *p = dummpy;
-    while (p->next->next != NULL)
-    {
-        p = p->next;
-    }
+    student *p = e->next;
+    student *pre;
+    student *r = p->next;
     p->next = NULL;
-    return dummpy;
+    p = r;
+    while(p)
+    {
+        r = p->next;
+        pre = e;
+        while(pre->next && pre->next->mathgrade < p->mathgrade)
+        {
+            pre = pre->next;
+        }
+        p->next = pre->next;
+        pre->next = p;
+        p = r;
+    }
+    return e;
+
+
 }
 
 void adminUI(student *head, student *p, teacher *head1, teacher *b) //管理员循环
@@ -1030,7 +1053,7 @@ void adminUItwo(student *head, student *p, teacher *head1) //管理员学生端�
             printlist(head);
             break;
         case 6:
-            head = sortlist(head);
+            head = sorlist5(head);
             printlist(head);
         }
         system("cls");
