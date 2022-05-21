@@ -1,12 +1,20 @@
 #include<stdio.h>
+#include<string.h>
 int main()
 {
-	// while(1)
-	// {
-		//char name[100];
-		int a = 0;
-		printf("%d ", a);
-		scanf("%d", &a);
-		printf("%d", a);
-	// }
+	char *s = {"Hello World"};
+
+	int n;
+    n = strlen(s);
+    int size = 0;
+    for(n-1; n > 0; n--)
+    {
+        size++;
+        if(s[n] == ' ')
+        {
+            break;
+            return size;
+        }
+    }
+    return size;
 }
