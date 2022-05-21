@@ -1,2 +1,0 @@
-git@github.com:wcyyds/ccode.git
-别名：origin
