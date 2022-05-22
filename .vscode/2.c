@@ -6,15 +6,17 @@ int main()
 
 	int n;
     n = strlen(s);
-    int size = 0;
-    for(n-1; n > 0; n--)
-    {
-        size++;
-        if(s[n] == ' ')
-        {
-            break;
-            return size;
-        }
-    }
+    int size = 10;
+    // for(n-1; n > 0; n--)
+    // {
+    //     size++;
+    //     if(s[n] == ' ')
+    //     {
+    //         break;
+    //         return size;
+    //     }
+    // }
+    size = size++;
+    printf("%d", size); 
     return size;
 }
