@@ -593,30 +593,28 @@ student *printclass(student *head, char *class) // 5.教师查看班级所有学
 
 student *sortlist(student *head) // 6.排序所有学生的数学成绩
 {
-    student *dummpy = (student *)malloc(sizeof(student));
-    dummpy->next = NULL;
-    dummpy->mathgrade = 0;
-    head->mathgrade = 0;
-    student *work = dummpy;
-    while (head)
+    student *curr = head->next->next;
+    student *last = head->next;
+    while (curr != NULL)
     {
-        student *temp = head->next;
-        work = dummpy;
-        while (work->next && work->next->mathgrade < head->mathgrade)
+        if (last->mathgrade <= curr->mathgrade)
         {
-            work = work->next;
+            last = last->next;
         }
-        head->next = work->next;
-        work->next = head;
-        head = temp;
+        else
+        {
+            student *cha = head;
+            while (cha->next->mathgrade <= curr->mathgrade)
+            {
+                cha = cha->next;
+            }
+            last->next = curr->next;
+            curr->next = cha->next;
+            cha->next = curr;
+        }
+        curr = last->next;
     }
-    student *p = dummpy;
-    while (p->next->next != NULL)
-    {
-        p = p->next;
-    }
-    p->next = NULL;
-    return dummpy;
+    return head;
 }
 
 student *sorlist5(student *head)
@@ -626,11 +624,11 @@ student *sorlist5(student *head)
     student *r = p->next;
     p->next = NULL;
     p = r;
-    while(p)
+    while (p)
     {
         r = p->next;
         pre = head;
-        while(pre->next && pre->next->mathgrade < p->mathgrade)
+        while (pre->next && pre->next->mathgrade < p->mathgrade)
         {
             pre = pre->next;
         }
@@ -914,22 +912,20 @@ student *sortclass(student *head, char *class) // 6.教师排序本班学生的�
     student *f = head->next;
     student *e = (student *)malloc(sizeof(student));
     student *a = e;
-    student *b = NULL;
     while (f)
     {
         if (strcmp(f->class, class) == 0)
         {
             student *xin = (student *)malloc(sizeof(student));
             xin->next = NULL;
-            b = xin;
-            a->next = b;
+            a->next = xin;
             a = a->next;
 
-            strcpy(b->stu_acc, f->stu_acc);
-            strcpy(b->name, f->name);
-            b->mathgrade = f->mathgrade;
-            strcpy(b->stu_pass, f->stu_pass);
-            strcpy(b->class, f->class);
+            strcpy(xin->stu_acc, f->stu_acc);
+            strcpy(xin->name, f->name);
+            xin->mathgrade = f->mathgrade;
+            strcpy(xin->stu_pass, f->stu_pass);
+            strcpy(xin->class, f->class);
 
             f = f->next;
         }
@@ -939,43 +935,28 @@ student *sortclass(student *head, char *class) // 6.教师排序本班学生的�
         }
     }
 
-    // student *p = e->next;
-    // student *pre;
-    // student *r = p->next;
-    // p->next = NULL;
-    // p = r;
-    // while(p)
-    // {
-    //     r = p->next;
-    //     pre = e;
-    //     while(pre->next && pre->next->mathgrade < p->mathgrade)
-    //     {
-    //         pre = pre->next;
-    //     }
-    //     p->next = pre->next;
-    //     pre->next = p;
-    //     p = r;
-    // }
-    // return e;
-
-    student *a = head;
-    student *b = head->next;
-    while(b->next != NULL)
+    student *curr = e->next->next;
+    student *last = e->next;
+    while (curr != NULL)
     {
-        if(a->next->mathgrade >= b->next->mathgrade)
+        if (last->mathgrade <= curr->mathgrade)
         {
-            b = b->next;
+            last = last->next;
         }
         else
         {
-            student *houyan = a;
-            student *cha = b;
-            b = b->next;
-            while(cha->mathgrade > houyan->mathgrade)
+            student *cha = e;
+            while (cha->next->mathgrade <= curr->mathgrade)
             {
+                cha = cha->next;
             }
+            last->next = curr->next;
+            curr->next = cha->next;
+            cha->next = curr;
         }
+        curr = last->next;
     }
+    return e;
 }
 
 void adminUI(student *head, student *p, teacher *head1, teacher *b) //管理员循环
