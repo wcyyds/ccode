@@ -61,7 +61,6 @@ student *findclass(student *head, student *p, teacher *head1, teacher *b, char *
 
 student *sorlist5(student *head);
 
-
 void creatfile() //检查创建文件
 {
     FILE *fp;
@@ -940,26 +939,43 @@ student *sortclass(student *head, char *class) // 6.教师排序本班学生的�
         }
     }
 
-    student *p = e->next;
-    student *pre;
-    student *r = p->next;
-    p->next = NULL;
-    p = r;
-    while(p)
+    // student *p = e->next;
+    // student *pre;
+    // student *r = p->next;
+    // p->next = NULL;
+    // p = r;
+    // while(p)
+    // {
+    //     r = p->next;
+    //     pre = e;
+    //     while(pre->next && pre->next->mathgrade < p->mathgrade)
+    //     {
+    //         pre = pre->next;
+    //     }
+    //     p->next = pre->next;
+    //     pre->next = p;
+    //     p = r;
+    // }
+    // return e;
+
+    student *a = head;
+    student *b = head->next;
+    while(b->next != NULL)
     {
-        r = p->next;
-        pre = e;
-        while(pre->next && pre->next->mathgrade < p->mathgrade)
+        if(a->next->mathgrade >= b->next->mathgrade)
         {
-            pre = pre->next;
+            b = b->next;
         }
-        p->next = pre->next;
-        pre->next = p;
-        p = r;
+        else
+        {
+            student *houyan = a;
+            student *cha = b;
+            b = b->next;
+            while(cha->mathgrade > houyan->mathgrade)
+            {
+            }
+        }
     }
-    return e;
-
-
 }
 
 void adminUI(student *head, student *p, teacher *head1, teacher *b) //管理员循环
