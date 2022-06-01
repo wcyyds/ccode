@@ -8,7 +8,6 @@
 
 //***************************
 typedef int Status; // Status是函数的类型
-typedef int SElemType;
 //***************************
 
 //循环队列的顺序存储结构
@@ -72,15 +71,14 @@ int main()
     for (int i = 0; i < 5; i++)
     {
         scanf("%d", &e);
-        EnQueue(q, e);
+        EnQueue(q, e); //给队列输入5个数字
     }
-    n = InitQueue(q);
-    printf("*%d*", n);
+    n = QueueLength(*q);
+    printf("*%d*", n); //输出现在队列的长度
 
     DeQueue(q, &e);
-    printf("---%d---", e);
+    printf("---%d---", e); //出队列
 
-    n = InitQueue(q);
-    printf("**%d**", n);
-
+    n = QueueLength(*q);
+    printf("**%d**", n); //输出现在队列的长度
 }

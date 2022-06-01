@@ -1,0 +1,4 @@
+git init 创建文件
+git add . 添加文件到暂存区
+git status 查看指定文件状态
+git commit -m "注释消息内容" 提交暂存区中的内容到本地仓库 -m提交信息
