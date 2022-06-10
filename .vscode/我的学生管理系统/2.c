@@ -889,7 +889,6 @@ void teacherUI(student *head, student *p, teacher *head1, teacher *b) //教师�
             p = findclass(head, p, head1, b, class);
             break;
         case 5:
-            printf("要重新改一下");
             printclass(head, class);
             break;
         case 6:
