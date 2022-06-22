@@ -1107,16 +1107,17 @@ void chongzhumima(student *head, student *q) //重置学生密码函数
 
 int main()
 {
+    system("title 学生管理系统9999.9999.9999.9999 by wangchenyang");
     creatfile();
     student *p = NULL;
     teacher *b = NULL;
 
     student *head = NULL;
-    head = inithead(head);
+    head = inithead();
     scanffile(head);
 
     teacher *head1 = NULL;
-    head1 = inithead1(head1);
+    head1 = inithead1();
     scanffile1(head1);
 
     //上面都是初始化
