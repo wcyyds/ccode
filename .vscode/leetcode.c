@@ -1,9 +1,18 @@
 #include<stdio.h>
-#include<string.h>
-int main(){
-    char dsada[] = "leetcode";
-    char *s;
-    s = &dsada;
-    int n = strlen(*s);
-    printf("%d", n);
+#include<stdlib.h>
+typedef union a{
+int number;
+char string[10];
+}b;
+typedef struct c{
+b d;
+int e;
+double f;
+char h;
+//b i;
+}g;
+int main(void){
+printf("%d\n",sizeof(b));
+printf("%d\n",sizeof(g));
+return 0;
 }
